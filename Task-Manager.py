@@ -17,6 +17,17 @@ def save_list(path="Task-Manager.json"):
         json.dump(tasks, file, indent=4)
 
 
+def get_number(tasks):
+    legal = False
+    while legal == False:
+        task_number = int(input("Choose task: "))
+        if task_number < 1 or task_number > len(tasks):
+            print("Illegal number.")
+        else:
+            legal = True
+    return task_number
+
+
 if os.path.exists("Task-Manager.json") and os.path.getsize("Task-Manager.json") > 0:
     with open("Task-Manager.json", "r") as file:
         tasks = json.load(file)
@@ -44,26 +55,14 @@ while True:
 
     elif choice == "3":
         print_tasks()
-        legal = False
-        while legal == False:
-            task_number = int(input("Choose task: "))
-            if task_number < 1 or task_number > len(tasks):
-                print("Illegal number.")
-            else:
-                legal = True
+        task_number = get_number(tasks)
         tasks[task_number - 1]["completed"] = True
         save_list()
         print("Task Completed.\n")
 
     elif choice == "4":
         print_tasks()
-        legal = False
-        while legal == False:
-            task_number = int(input("Choose task to delete: "))
-            if task_number < 1 or task_number > len(tasks):
-                print("Illegal number.")
-            else:
-                legal = True
+        task_number = get_number(tasks)
         sure = input("Are you sure? (y/n) ")
         if sure == "y":
             del tasks[task_number - 1]
