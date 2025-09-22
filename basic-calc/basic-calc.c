@@ -24,10 +24,8 @@ int main(void) {
                 printf("Error: devision by zero");
                 break;
             }
-            else {
-                printf("%.2lf / %.2lf = %.2lf\n", a, b, a/b);
-                break;
-            }
+            printf("%.2lf / %.2lf = %.2lf\n", a, b, a/b);
+            break;
         default:
             printf("Invalid operation\n");
     }
